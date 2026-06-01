@@ -1,0 +1,20 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "this is for package",
+  "keywords": [
+    "vikas"
+  ],
+  "license": "ISC",
+  "author": "vikas thakur",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "figlet": "^1.11.0",
+    "nodemon": "^3.1.14"
+  }
+}

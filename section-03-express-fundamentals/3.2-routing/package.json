@@ -1,10 +1,8 @@
 {
-  "name": "package",
+  "name": "express-routing",
   "version": "1.0.0",
-  "description": "this is for package",
-  "keywords": [
-    "vikas"
-  ],
+  "description": "Express routing demo - GET, POST, PUT, DELETE",
+  "keywords": [],
   "license": "ISC",
   "author": "vikas thakur",
   "type": "module",
@@ -14,7 +12,7 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "figlet": "^1.11.0",
+    "express": "^5.2.1",
     "nodemon": "^3.1.14"
   }
 }

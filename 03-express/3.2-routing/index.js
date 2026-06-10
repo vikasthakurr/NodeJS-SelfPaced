@@ -1,75 +1,58 @@
 import express from "express";
-import fs from "fs/promises";
-
 const app = express();
-const PORT = 3000;
-const DATA_FILE = "./log.json";
-
 app.use(express.json());
 
-// Helper functions for data management
-const getItems = async () => {
-  try {
-    const data = await fs.readFile(DATA_FILE, "utf-8");
-    const parsed = JSON.parse(data || "[]");
-    return Array.isArray(parsed) ? parsed : [parsed];
-  } catch (err) {
-    if (err.code === "ENOENT") return [];
-    throw err;
-  }
-};
+const PORT = 3000;
 
-const saveItems = async (items) => {
-  await fs.writeFile(DATA_FILE, JSON.stringify(items, null, 2));
-};
+//crud operation routes
 
-app.get("/items", async (req, res) => {
-  try {
-    const items = await getItems();
-    res.json(items);
-  } catch (err) {
-    res.status(500).json({ error: "Error reading items" });
-  }
+//request-->route-->controller logic -->response
+
+//get route
+app.get("/", (req, res) => {
+  res.end("hello from home page");
 });
 
-app.post("/add-todo", async (req, res) => {
-  try {
-    const { id, name } = req.body;
-    const items = await getItems();
-    const newItem = { id, name };
-    items.push(newItem);
-    await saveItems(items);
-    res.status(201).json(newItem);
-  } catch (err) {
-    res.status(500).json({ error: "Error saving item" });
-  }
+app.get("/about", (req, res) => {
+  res.status(200).json({ message: "this is about us page" });
 });
 
-app.get("/items/:id", async (req, res) => {
-  try {
-    const items = await getItems();
-    const item = items.find((i) => i.id == req.params.id);
-    item ? res.json(item) : res.status(404).json({ message: "Item not found" });
-  } catch (err) {
-    res.status(500).json({ error: "Could not read data file" });
-  }
+app.get("/users", (req, res) => {
+  console.log(req.query.category);
+  res.status(200).json({ message: "fetching all users" });
 });
 
-app.put("/items/:id", async (req, res) => {
-  try {
-    const items = await getItems();
-    const index = items.findIndex((i) => i.id == req.params.id);
-    if (index === -1)
-      return res.status(404).json({ message: "Item not found" });
+app.get("/users/:id", (req, res) => {
+  console.log(Number(req.params.id));
+  res.end(`fetching user with id ${Number(req.params.id)}`);
+});
 
-    items[index].name = req.body.name;
-    await saveItems(items);
-    res.json(items[index]);
-  } catch (err) {
-    res.status(500).json({ error: "Could not update data" });
-  }
+app.get("/users/:userId/orders/:orderId", (req, res) => {
+  console.log(Number(req.params.userId, req.params.orderId));
+
+  res.end(
+    `fetching order with id ${Number(req.params.orderId)} from user with id ${Number(req.params.userId)}`,
+  );
+});
+
+app.post("/register", (req, res) => {
+  //logic`
+  console.log(req.body);
+  res.end("user registered success");
+});
+
+app.put("/update/:id", (req, res) => {
+  const userId = Number(req.params.id);
+  //logic
+  res.end("user updated success");
+});
+
+app.delete("/deactivate/:userId", (req, res) => {
+  const userId = Number(req.params.id);
+  //logic
+  res.status(200).json({ message: "user deleted successfuly" });
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log("server started");
 });

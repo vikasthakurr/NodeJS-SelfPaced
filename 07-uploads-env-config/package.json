@@ -1,0 +1,15 @@
+{
+  "name": "07-uploads-env-config",
+  "version": "1.0.0",
+  "description": "> Instructor tip: Practical utilities every real app needs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.2.0"
+  }
+}

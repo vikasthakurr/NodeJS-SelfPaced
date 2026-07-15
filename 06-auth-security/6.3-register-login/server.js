@@ -8,12 +8,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 connectDB();
-app.get("/", (req, res) => {
-  res.json({
-    message: "hello world",
-    status: true,
-  });
-});
 
 app.use("/api/auth/v1/", authRoutes);
 

@@ -1,20 +1,19 @@
 {
-  "name": "6.3-register-login",
+  "name": "resgister-login",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "set NODE_OPTIONS=--dns-result-order=ipv4first && nodemon server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "module",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.7.3",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.4",
     "nodemon": "^3.1.14"
   }
 }

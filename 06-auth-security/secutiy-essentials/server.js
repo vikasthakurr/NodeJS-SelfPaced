@@ -25,7 +25,7 @@ const limit = rateLimit({
 //cors=>cross origin resources sharing
 
 // app.use(limit());
-app.get("/", (req, res) => {
+app.get("/", limit, (req, res) => {
   res.end("hi from home");
 });
 

@@ -1,0 +1,16 @@
+{
+  "name": "08-testing",
+  "version": "1.0.0",
+  "description": "> Instructor tip: Introduce testing mindset early - even simple tests build confidence.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
+  }
+}

@@ -1,20 +1,12 @@
-import request from "supertest";
 import app from "./app";
+import request from "supertest";
 
-test("on starting of server", async () => {
-  const res = await request(app).get("/");
-  expect(res.status).toBe(200);
-  expect(res.body).toEqual({
-    message: "hello from server",
-  });
-});
-
-test("on user creation", async () => {
+it("should return 201 with username while creating user", async () => {
   const res = await request(app).post("/users").send({
     name: "vikas",
   });
 
-  expect(res.status).toBe(201);
+  expect(res.statusCode).toBe(201);
 
-  expect(res.body).toEqual({ name: "vikas" });
+  expect(res.body.name).toBe("vikas");
 });

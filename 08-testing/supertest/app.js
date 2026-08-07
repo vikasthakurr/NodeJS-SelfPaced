@@ -1,13 +1,14 @@
-//route or integration testing using supertest
-import express from "express";
-import userRoutes from "./routes/user.routes";
+import express from "express"
+import userRoutes from "./routes/user.routes.js"
 
-const app = express();
+const app=express()
 app.use(express.json())
 
-app.get("/", (req, res) => {
-  res.json({ message: "hello from server" });
-});
+
+app.get("/",(req,res)=>{
+    req.end("hello world")
+})
+
 app.use(userRoutes)
 
-export default app;
+export default app

@@ -1,58 +1,72 @@
 import express from "express";
+import morgan from "morgan";
+
 const app = express();
+
+//json body parser
 app.use(express.json());
 
+//form parse data
+app.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
+
+//for static assest
+app.use(express.static("public"));
+
+app.use(morgan("dev"))
 const PORT = 3000;
 
-//crud operation routes
+//allusers
+//CRUD->
+//POST
 
-//request-->route-->controller logic -->response
 
-//get route
-app.get("/", (req, res) => {
-  res.end("hello from home page");
-});
-
-app.get("/about", (req, res) => {
-  res.status(200).json({ message: "this is about us page" });
-});
-
-app.get("/users", (req, res) => {
-  console.log(req.query.category);
-  res.status(200).json({ message: "fetching all users" });
-});
-
-app.get("/users/:id", (req, res) => {
-  console.log(Number(req.params.id));
-  res.end(`fetching user with id ${Number(req.params.id)}`);
-});
-
-app.get("/users/:userId/orders/:orderId", (req, res) => {
-  console.log(Number(req.params.userId, req.params.orderId));
-
-  res.end(
-    `fetching order with id ${Number(req.params.orderId)} from user with id ${Number(req.params.userId)}`,
-  );
-});
-
-app.post("/register", (req, res) => {
-  //logic`
+app.post("/users", (req, res) => {
+  const user = req.body;
   console.log(req.body);
-  res.end("user registered success");
+  res.status(201).json({
+    message: "user created successfuly",
+    user,
+  });
 });
 
-app.put("/update/:id", (req, res) => {
-  const userId = Number(req.params.id);
-  //logic
-  res.end("user updated success");
-});
+// app.post("/register",(req,res)=>{
+//     console.log(req.body);
+//     res.send("form submitted")
+// })
 
-app.delete("/deactivate/:userId", (req, res) => {
-  const userId = Number(req.params.id);
-  //logic
-  res.status(200).json({ message: "user deleted successfuly" });
-});
+// //GET
+// app.get("/users", (req, res) => {
+//   res.status(200).json({
+//     message: "all user fetched",
+//   });
+// });
 
+//PUT
+
+// app.put("/users/:id", (req, res) => {
+//   const id = req.params.id;
+//   const updatedData = req.body;
+
+//   res.status(200).json({
+//     message: "user updated successfully",
+//     updatedData,
+//   });
+// });
+
+//delete
+
+// app.delete("/users/:id", (req, res) => {
+//   const id = req.params.id;
+
+//   res.status(200).json({
+//     message: "user deleted successfully",
+//     id,
+//   });
+// });
 app.listen(PORT, () => {
-  console.log("server started");
+  console.log("server is running");
 });

@@ -31,6 +31,8 @@ io.on("connection", (socket) => {
             message: `${username} joined the chat`
         });
     });
+
+    // Receive Message
     socket.on("send-message", (message) => {
 
         io.emit("chat-message", {
@@ -39,38 +41,37 @@ io.on("connection", (socket) => {
         });
 
     });
-    //typing indicators
-    socket.on("typing",()=>{
-        socket.broadcast.emit("user-typing",socket.username)
-    })
 
-    //stop typing
-    socket.on("stop-typing",()=>{
-        socket.broadcast.emit("stop-typing")
-    })
+    // Typing Indicator
+    socket.on("typing", () => {
+
+        socket.broadcast.emit("user-typing", socket.username);
+
+    });
+
+    // Stop Typing
+    socket.on("stop-typing", () => {
+
+        socket.broadcast.emit("stop-typing");
+
+    });
 
     // Disconnect
-
     socket.on("disconnect",()=>{
         onlineUsers=onlineUsers.filter(
-            user=>user.id !==socket.id
-        );
-
+            user=>user.id !== socket.id
+        )
         io.emit("online-users",onlineUsers)
 
-        io.emit("chat-message",{
-            sender: "Server",
-            message: `${socket.username || "A user"} left the chat`
+        io.emit("chat-message",({
+            sender:"server",
 
-        })
-        console.log("disconnected",socket.id)
+            message:`${socket.username || "A user has "} left the chat`
+        }))
+        console.log("Disconnected",socket.id)
     })
 
 });
-
-
-
-
 
 server.listen(3000, () => {
     console.log("Server running on http://localhost:3000");

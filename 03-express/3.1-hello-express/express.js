@@ -1,27 +1,20 @@
-// const express= require("express")
-import express from "express"
-// console.log(express)
-const server= express()
-const PORT=3000;
+import express from "express";
 
+//defination of server
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//root route or homepage
-// server.get("/",(req,res)=>{
-//     res.end("hello world from express")
-// })
+app.get("/", (req, res) => {
+  //home route logic
+  res.end("hello from home page");
+});
 
-
-server.get("/about",(req,res)=>{
-    res.status(200)
-    // res.send()
-    // res.json()
-    // res.setHeader("author","vikas thakur")
-    // res.end("hello from about page")
-    res.send(`
-                <h1>hello</h1>
-        `)
-})
-
-server.listen(PORT,()=>{
-    console.log(`server is running on port ${PORT}`)
-})
+app.get("/about", (req, res) => {
+  res.status(200).json({
+    message: "hello from about us page",
+  });
+});
+app.listen(3000, () => {
+  console.log("server is up and running");
+});

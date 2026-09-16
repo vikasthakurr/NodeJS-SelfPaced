@@ -1,6 +1,11 @@
 export default function errorHandler(err, req, res, next) {
   console.error(err.stack);
-  res.status(err.statusCode || 500).json({
-    error: err.message || "Something broke!",
+
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Something broke!";
+
+  res.status(statusCode).json({
+    success: false,
+    error: message,
   });
 }

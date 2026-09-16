@@ -1,6 +1,6 @@
 import express from "express";
-import errorHandler from "./middleware/errorHandler";
-import ApiError from "./utils/ApiError";
+import errorHandler from "./middleware/errorHandler.js";
+import ApiError from "./utils/ApiError.js";
 
 const app = express();
 
@@ -14,16 +14,20 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 
-//error
-
-app.get("/users/:id", (req, res) => {
+// Pass `next` so we can forward errors to the centralized handler
+app.get("/users/:id", (req, res, next) => {
   const id = req.params.id;
   const user = users.find((user) => user.id == id);
+
   if (!user) {
-    return next(new ApiError("id not found", 404));
+    // throw err + message via the ApiError class
+    return next(new ApiError("User not found", 404));
   }
+
+  res.json(user);
 });
 
+// Centralized error handler must be registered AFTER all routes
 app.use(errorHandler);
 
 app.listen(PORT, () => {

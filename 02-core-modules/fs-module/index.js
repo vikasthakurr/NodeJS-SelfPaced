@@ -1,38 +1,41 @@
 import fs from "fs";
 
-// console.log(fs)
-
-//write file
-// fs.writeFileSync("log.txt","hello from vikas")
-// fs.writeFileSync("log.txt","hi")
-// fs.writeFile("log.txt", "hi from nodejs", (err) => {
-//   if (err) return;
-//   console.log("data has been written");
-// });
-
-// fs.appendFile("log.txt", "\nhow are you", (err) => {
-//   if (err) return;
-//   console.log("data has been appended");
-// });
-
-// fs.readFile("log.txt", "utf-8", (err, data) => {
-//   if (err) return;
+//read a file
+// fs.readFile("data.txt", "utf-8", (err, data) => {
+//   if (err) {
+//     console.log("error while reading file", err.message);
+//     return;
+//   }
 //   console.log(data);
 // });
 
-// fs.unlink("log.txt",(err)=>{
-//     if(err) return;
-//     console.log("file deleted")
-// })
+//create a file
+// fs.writeFile("log.txt", "hello world", (err, data) => {
+//   if (err) {
+//     console.log("error while writing a file", err.message);
+//     return;
+//   }
+//   console.log("file created successfuly");
+// });
 
-// if (fs.existsSync("log.txt")) {
-//   console.log("file is there in folder");
-// }
+//append a file
+// fs.appendFile("log.txt", "\nnew hello world", (err, data) => {
+//   if (err) {
+//     console.log("error while updating the content", err.message);
+//     return;
+//   }
+//   console.log("content updated");
+// });
 
-console.log("hi");
-// fs.readFileSync("log.txt","utf-8");
-fs.readFile("log.txt", "utf-8", (err, data) => {
-  if (err) return;
-  console.log(data);
-});
-console.log("end")
+//delete file
+// fs.unlink("log.txt", (err) => {
+//   if (err) {
+//     console.log("error while deleting ", err.message);
+//     return;
+//   }
+//   console.log("file removed");
+// });
+
+// console.log("hello");
+// fs.writeFileSync("file.txt", "hi from vikas");
+// console.log("bye");

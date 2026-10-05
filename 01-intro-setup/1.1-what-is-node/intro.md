@@ -1,6 +1,6 @@
 # What is Node.js?
 
-Node.js is a **JavaScript runtime** built on Chrome's V8 engine that lets you run JavaScript outside the browser — on servers, desktops, and anywhere else.
+Node.js is a **JavaScript runtime environment** built on Chrome's V8 engine that lets you run JavaScript outside the browser — on servers, desktops, and anywhere else.
 
 Before Node.js, JavaScript could only run inside a browser. Node changed that.
 

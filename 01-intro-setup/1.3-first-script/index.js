@@ -1,6 +1,11 @@
-console.log("hello world");
+// console.log("hello world!")
+//javascript->nodejs env->OS->output
+//js->browser->chrome/safari
+// const name="vikas";
+// const salary=1234;
 
-const fname="vikas";
-console.log(fname)
+// console.log("name is",name);
+// console.log("salary is",salary)
 
-console.log("this is first hello world in nodejs")
+console.log("we are running the js using nodejs");
+console.log("node version is:", process.version);
